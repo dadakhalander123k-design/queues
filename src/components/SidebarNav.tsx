@@ -7,7 +7,6 @@ import {
   HelpCircle,
   TrendingUp,
   X,
-  FlaskConical,
 } from 'lucide-react';
 import { MainViewTab } from '../types/game';
 import { progressManager } from '../utils/progressManager';
@@ -66,14 +65,6 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
       badge: `${stats.video.completed} / 2`,
       badgeClass:
         'bg-[#EFF6FF] dark:bg-blue-950/50 text-[#2563EB] dark:text-[#3B82F6] border border-[#DBEAFE] dark:border-blue-500/20',
-    },
-    {
-      id: 'LAB' as MainViewTab,
-      label: 'Lab',
-      icon: FlaskConical,
-      badge: 'Workbench',
-      badgeClass:
-        'bg-purple-50 dark:bg-purple-950/40 text-purple-700 dark:text-purple-300 border border-purple-100 dark:border-purple-500/20',
     },
     {
       id: 'GAME' as MainViewTab,
