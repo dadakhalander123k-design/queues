@@ -54,7 +54,7 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
       id: 'THEORY' as MainViewTab,
       label: 'Learn',
       icon: BookOpen,
-      badge: `${stats.theory.completed} / ${stats.theory.total}`,
+      badge: `${stats.theory.completed} / 20`,
       badgeClass:
         'bg-[#EFF6FF] dark:bg-blue-950/50 text-[#2563EB] dark:text-[#3B82F6] border border-[#DBEAFE] dark:border-blue-500/20',
     },
@@ -70,7 +70,8 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
       id: 'GAME' as MainViewTab,
       label: 'Game',
       icon: Gamepad2,
-      badge: `${stats.game.completed.length} / 5`,
+      badge:
+        stats.game.completed >= 5 ? 'Completed' : `${stats.game.completed ?? 0} / 5`,
       badgeClass:
         'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-100 dark:border-emerald-500/20',
     },
@@ -78,7 +79,7 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
       id: 'QUIZ' as MainViewTab,
       label: 'Quiz',
       icon: HelpCircle,
-      badge: stats.quiz.isSubmitted ? 'Completed' : '12 Qs',
+      badge: stats.quiz.isSubmitted ? 'Completed' : '0 / 10',
       badgeClass:
         'bg-[#EFF6FF] dark:bg-blue-900/40 text-[#2563EB] dark:text-[#3B82F6] border border-[#DBEAFE] dark:border-blue-500/20',
     },
@@ -164,7 +165,7 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
                 <span className="font-sans text-sm tracking-tight">{item.label}</span>
               </div>
               <span
-                className={`text-[11px] px-2.5 py-0.5 rounded-full font-mono font-bold tracking-tight ${item.badgeClass}`}
+                className={`text-[11px] px-2.5 py-0.5 rounded-full font-mono font-bold tracking-tight opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto ${item.badgeClass}`}
               >
                 {item.badge}
               </span>
