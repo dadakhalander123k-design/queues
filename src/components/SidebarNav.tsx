@@ -113,7 +113,9 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
   const content = (
     <aside
       id="app-sidebar-navigation"
-      className="w-64 h-full flex flex-col bg-white dark:bg-[#0F172A] border-r border-[#E5E7EB] dark:border-blue-500/20 select-none shadow-xs transition-colors duration-300"
+      onMouseEnter={() => setIsProgressHovered(true)}
+      onMouseLeave={() => setIsProgressHovered(false)}
+      className="group/sidebar w-64 h-full flex flex-col bg-white dark:bg-[#0F172A] border-r border-[#E5E7EB] dark:border-blue-500/20 select-none shadow-xs transition-colors duration-300"
     >
       {/* Top Sidebar Header with NAVIGATION MENU and Close Button */}
       <div className="p-3.5 sm:p-4 border-b border-[#E5E7EB] dark:border-blue-500/15 flex items-center justify-between">
@@ -133,11 +135,7 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
       </div>
 
       {/* Navigation Item List */}
-      <div
-        className="px-3 py-3 space-y-1.5 overflow-y-auto"
-        onMouseEnter={() => setIsProgressHovered(true)}
-        onMouseLeave={() => setIsProgressHovered(false)}
-      >
+      <div className="px-3 py-3 space-y-1.5 overflow-y-auto">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = activeTab === item.id || (item.id === 'GAME' && activeTab === 'QUEST');
@@ -148,7 +146,7 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
               id={`sidebar-nav-${item.id.toLowerCase()}`}
               onClick={() => handleSelect(item.id)}
               aria-current={isActive ? 'page' : undefined}
-              className={`group w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-[15px] font-semibold transition-all duration-150 cursor-pointer ${
+              className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-[15px] font-semibold transition-all duration-150 cursor-pointer ${
                 isActive
                   ? 'bg-[#EFF6FF] dark:bg-blue-950/50 text-[#2563EB] dark:text-[#3B82F6] font-bold shadow-xs border border-[#DBEAFE] dark:border-blue-500/30'
                   : 'text-slate-700 dark:text-slate-300 hover:bg-[#EFF6FF] dark:hover:bg-blue-950/30 hover:text-[#2563EB] dark:hover:text-white border border-transparent'
@@ -165,7 +163,9 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
                 <span className="font-sans text-sm tracking-tight">{item.label}</span>
               </div>
               <span
-                className={`text-[11px] px-2.5 py-0.5 rounded-full font-mono font-bold tracking-tight opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto ${item.badgeClass}`}
+                className={`text-[11px] px-2.5 py-0.5 rounded-full font-mono font-bold tracking-tight ${
+                  isProgressHovered ? 'opacity-100' : 'opacity-0'
+                } group-hover/sidebar:opacity-100 transition-opacity duration-200 pointer-events-none ${item.badgeClass}`}
               >
                 {item.badge}
               </span>
